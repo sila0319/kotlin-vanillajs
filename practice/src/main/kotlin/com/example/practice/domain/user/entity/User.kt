@@ -8,7 +8,6 @@ import jakarta.persistence.EnumType
 import jakarta.persistence.Enumerated
 import jakarta.persistence.Table
 
-
 enum class Role{
     USER,ADMIN,BEN,DROP
 }
@@ -45,7 +44,6 @@ class User (
         this.role = req.role
 
     }
-
 }
 
 /**

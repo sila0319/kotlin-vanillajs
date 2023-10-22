@@ -32,11 +32,11 @@ class UserService(
         return user?.toUserRes()
     }
     @Transactional
-    fun createUser(userSaveReq: UserSaveReq)  : UserSaveRes {
+    fun createUser(userSaveReq: UserSaveReq)  : String {
         if( userRepository.findByUserid(userSaveReq.userid) === null){
             var user : User = userSaveReq.toEntity()
             userRepository.save(user)
-            return user.toUserSaveRes()
+            return user.toUserSaveRes().userid
         }else {
             throw IllegalArgumentException("중복된 id 입니다.")
         }
