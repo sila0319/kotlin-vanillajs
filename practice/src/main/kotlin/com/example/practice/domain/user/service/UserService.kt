@@ -1,22 +1,21 @@
 package com.example.practice.domain.user.service
 
-import org.springframework.stereotype.Service
-
-import com.example.practice.domain.user.repository.UserRepository
 import com.example.practice.domain.user.dto.*
 import com.example.practice.domain.user.entity.*
+import com.example.practice.domain.user.repository.UserRepository
 import com.example.practice.global.exception.UserNotFoundException
-
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
-
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
+import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
 
 @Service
 class UserService(
 
-    private val userRepository: UserRepository
+    private val userRepository: UserRepository,
+        private val singServie : SignService,
 ){
 
     @Transactional(readOnly = true)
@@ -62,4 +61,10 @@ class UserService(
             return "잘못된 정보가 기입되어 있습니다."
         }
     }
+//    @Transactional
+//    fun loginUser(userid: String ,userpw: String) : String {
+//        val authenticationToken = UsernamePasswordAuthenticationToken(userid, userpw);
+//        singServie.loadUserByUsername(userid);
+//
+//    }
 }

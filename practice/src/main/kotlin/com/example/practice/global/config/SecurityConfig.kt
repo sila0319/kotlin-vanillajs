@@ -18,16 +18,16 @@ class SecurityConfig() {
 
     @Bean
     fun filterChain(http: HttpSecurity) = http
-        .formLogin().disable()
-        .csrf().disable()
-        .cors()
-        .and()
-        .authorizeHttpRequests {
-            it.requestMatchers(*allowedUrl).permitAll()	// requestMatchers의 인자로 전달된 url은 모두에게 허용
-                .anyRequest().authenticated()	// 그 외의 모든 요청은 인증 필요
-        }
-        .sessionManagement { it.sessionCreationPolicy(SessionCreationPolicy.STATELESS) }	// 세션을 사용하지 않으므로 STATELESS 설정
-        .build()!!
+            .authorizeHttpRequests{
+                it.requestMatchers(*allowedUrl).permitAll()
+                        .anyRequest().authenticated()
+            }
+            .formLogin()
+            .loginPage("/user/login")
+            .defaultSuccessUrl("/")
+            .and()
+            .csrf().disable()
+            .build()
 
     @Bean
     fun passwordEncoder () = BCryptPasswordEncoder()
