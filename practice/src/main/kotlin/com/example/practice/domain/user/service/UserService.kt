@@ -34,6 +34,8 @@ class UserService(
     @Transactional
     fun createUser(userSaveReq: UserSaveReq)  : UserSaveRes {
         if( userRepository.findByUserid(userSaveReq.userid) === null){
+            if(userSaveReq.userpw != userSaveReq.userpwchk)
+                throw IllegalArgumentException("비밀번호를 확인 해주세요.")
             var user : User = userSaveReq.toEntity()
             userRepository.save(user)
             return user.toUserSaveRes()

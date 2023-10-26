@@ -15,7 +15,7 @@
 </th:block>
 
 <div layout:fragment="content">
-    <form class="container">
+    <form class="container" th:action="@{/user/createUser}" method="post" id="createUserForm">
         <div class="col-md-8">
             <label for="username" class="form-label">이름</label>
             <div class="">

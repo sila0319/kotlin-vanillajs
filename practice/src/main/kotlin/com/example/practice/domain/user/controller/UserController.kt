@@ -34,6 +34,7 @@ class wUserController (
     @GetMapping("login")
     fun login() : String{
         //로그인 페이지 이동
+        println("로그인 Get")
         return "views/user/login"
     }
 
@@ -44,6 +45,7 @@ class wUserController (
 
     @GetMapping("/createUser")
     fun signup() : String{
+        println("유저 생성 Get")
         return "views/user/create"
     }
 

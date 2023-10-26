@@ -9,6 +9,7 @@ data class UserSaveReq(
     var userid: String,
     var userpw : String,
     var username : String,
+    var userpwchk : String,
     var role : Role,
 )
 
