@@ -1,6 +1,8 @@
 package com.example.practice.domain.user.service
 
+import com.example.practice.domain.user.entity.User
 import com.example.practice.domain.user.repository.UserRepository
+import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.core.userdetails.UserDetailsService
@@ -13,10 +15,11 @@ class SignService(
 ) : UserDetailsService {
 
     override fun loadUserByUsername(userid: String?): UserDetails {
-        val user = userRepository.findByUserid(userid)
+        val user : User? = userRepository.findByUserid(userid)
         if(user===null)
-            throw IllegalArgumentException("중복된 id 입니다.")
+            throw IllegalArgumentException("아이디나 비밀번호가 잘못되었습니다.")
 
+      //  return createUserDetails(user)
         return createUserDetails(user)
     }
 
@@ -29,3 +32,4 @@ class SignService(
         )
     }
 }
+

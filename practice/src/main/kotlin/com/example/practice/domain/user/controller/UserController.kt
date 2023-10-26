@@ -11,6 +11,7 @@ import org.springframework.data.web.PageableDefault
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Controller
+import org.springframework.ui.Model
 
 
 import org.springframework.web.bind.annotation.*
@@ -19,7 +20,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes
 
 @Controller
 @RequestMapping("/user")
-class UserController (
+class wUserController (
     @Autowired
     private val userService : UserService,
 ){
@@ -47,12 +48,10 @@ class UserController (
     }
 
     @PostMapping("/createUser")
-    fun createUser(userSaveReq: UserSaveReq, redirectAttributes : RedirectAttributes) : String{
-        var msg : String = userService.createUser(userSaveReq)+"님 환영합니다."
-
-        redirectAttributes.addAttribute("msg" , msg)
-
-        return "redirect:/"
+    fun createUser(userSaveReq: UserSaveReq) : String{
+        println("유저 생성 요청")
+        var userSaveRes : UserSaveRes =  userService.createUser(userSaveReq)
+        return "views/user/login"
     }
 
     @GetMapping("/getAllUser") //관리자 페이지로 뺄 가능성 있음

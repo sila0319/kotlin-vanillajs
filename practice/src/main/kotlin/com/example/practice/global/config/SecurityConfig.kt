@@ -26,6 +26,10 @@ class SecurityConfig() {
             .loginPage("/user/login")
             .defaultSuccessUrl("/")
             .and()
+            .logout()
+            .logoutSuccessUrl("/")
+            .invalidateHttpSession(true)
+            .and()
             .csrf().disable()
             .build()
 

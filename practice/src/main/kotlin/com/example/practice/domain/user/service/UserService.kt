@@ -7,6 +7,7 @@ import com.example.practice.global.exception.UserNotFoundException
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
+import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
@@ -31,11 +32,11 @@ class UserService(
         return user?.toUserRes()
     }
     @Transactional
-    fun createUser(userSaveReq: UserSaveReq)  : String {
+    fun createUser(userSaveReq: UserSaveReq)  : UserSaveRes {
         if( userRepository.findByUserid(userSaveReq.userid) === null){
             var user : User = userSaveReq.toEntity()
             userRepository.save(user)
-            return user.toUserSaveRes().userid
+            return user.toUserSaveRes()
         }else {
             throw IllegalArgumentException("중복된 id 입니다.")
         }
@@ -68,3 +69,4 @@ class UserService(
 //
 //    }
 }
+
