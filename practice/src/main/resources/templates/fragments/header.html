@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
     <div th:fragment="headerFragment">
         <nav class="navbar flex-column">
             <div class="container">
@@ -11,10 +11,9 @@
                     </form>
                 </div>
                 <div class="d-flex">
-
-                    <a th:href="@{/member/login}" class="navbar-brand">로그인</a>
+                    <a th:href="@{/member/login}" sec:authorize="isAnonymous()" class="navbar-brand">로그인</a>
+                    <a th:href="@{/member/logout}"sec:authorize="isAuthenticated()" class="navbar-brand">로그아웃</a>
                     <a th:href="@{/member/createMember}" class="navbar-brand">회원가입</a>
-
                 </div>
             </div>
             <div class="nav justify-content-lg-between"></div>

@@ -14,7 +14,7 @@
 </th:block>
 
 <div layout:fragment="content">
-    <form class="container" th:action="@{member/login}" method="post" id="loginForm">
+    <form class="container" th:action="@{/member/login}" method="post" id="loginForm">
         <div th:if="${param.error}">
             <div class="alert alert-danger">
                 사용자ID 또는 비밀번호를 확인해 주세요.
@@ -25,14 +25,14 @@
             </script>
         </div>
         <div class="col-md-8">
-            <label for="memberid" class="form-label">아이디</label>
+            <label for="memberId" class="form-label">아이디</label>
             <div class="input-group has-validation">
-                <input type="text" class="form-control" id="memberid" name="memberid" aria-describedby="inputGroupPrepend2 validationServermemberIdFeedback" placeholder="아이디" required>
+                <input type="text" class="form-control" id="memberId" name="memberId" aria-describedby="inputGroupPrepend2 validationServermemberIdFeedback" placeholder="아이디" required>
             </div>
         </div>
         <div class="col-md-8">
-            <label for="memberpw" class="form-label">비밀번호</label>
-            <input type="password" class="form-control" id="memberpw" name="memberpw" aria-describedby="validationServer03Feedback" required placeholder="비밀번호">
+            <label for="memberPw" class="form-label">비밀번호</label>
+            <input type="password" class="form-control" id="memberPw" name="memberPw" aria-describedby="validationServer03Feedback" required placeholder="비밀번호">
         </div>
         <div class="col-md-6 justify-content-end">
             <button class="btn btn-primary " type="submit" >로그인</button>

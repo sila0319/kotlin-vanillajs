@@ -16,10 +16,10 @@ class SignService(
     private val memberRepository: MemberRepository
 ) : UserDetailsService {
 
-    override fun loadUserByUsername(memberid: String?): UserDetails {
+    override fun loadUserByUsername(memberId: String?): UserDetails {
         val member : Member? = memberRepository.findByMemberid("test4")
         println(member)
-        println(memberid)
+        println(memberId)
         if(member===null)
             throw IllegalArgumentException("아이디나 비밀번호가 잘못되었습니다.")
 
@@ -32,7 +32,7 @@ class SignService(
             throw IllegalArgumentException("로그인 할수 없는 유저 입니다.")
         }
         val user : User = User(member.memberid, member.memberpw, authorities)
-        println(user)
+        println(user.username)
         return user
     }
 }
