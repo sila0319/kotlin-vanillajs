@@ -2,10 +2,9 @@ package com.example.practice.domain.post.entity
 
 import com.example.practice.domain.board.entity.Board
 import com.example.practice.domain.file.entity.File
-import com.example.practice.domain.user.entity.User
+import com.example.practice.domain.member.entity.Member
 import com.example.practice.global.entity.AuditingEntity
 import jakarta.persistence.*
-import org.apache.commons.lang3.mutable.Mutable
 
 @Entity
 @Table(name = "posts")
@@ -13,7 +12,7 @@ class Post (
     title : String,
     content : String,
     views : Long,
-    user : User,
+    member: Member,
     board : Board,
     @OneToMany(mappedBy = "post")
     var files : MutableList<File>
@@ -31,8 +30,8 @@ class Post (
         protected set
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id" )
-    var user : User = user
+    @JoinColumn(name = "member_id" )
+    var member : Member = member
         protected set
 
     @ManyToOne(fetch = FetchType.LAZY)

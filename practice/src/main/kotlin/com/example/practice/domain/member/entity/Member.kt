@@ -1,6 +1,6 @@
-package com.example.practice.domain.user.entity
+package com.example.practice.domain.member.entity
 
-import com.example.practice.domain.user.dto.*
+import com.example.practice.domain.member.dto.*
 import com.example.practice.global.entity.AuditingEntity
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
@@ -9,39 +9,39 @@ import jakarta.persistence.Enumerated
 import jakarta.persistence.Table
 
 enum class Role{
-    USER,ADMIN,BEN,DROP
+    MEMBER,ADMIN,BEN,DROP
 }
 @Entity
-@Table(name = "users")
-class User (
+@Table(name = "members")
+class Member (
 
-    userid: String,
-    userpw : String,
-    username : String,
+    memberid: String,
+    memberpw : String,
+    membername : String,
     role: Role
 
 ): AuditingEntity (){
     @Column(nullable = false)
-    var userid : String = userid
+    var memberid : String = memberid
         protected set
 
     @Column(nullable = false)
-    var userpw : String = userpw
+    var memberpw : String = memberpw
         protected set
 
     @Column(nullable = false)
-    var username : String = username
+    var membername : String = membername
         protected set
 
     @Enumerated(EnumType.STRING)
     var role : Role = role
         protected set
 
-    fun updateInfo(req: UserSaveReq) {
-        this.userid = req.userid
-        this.userpw = req.userpw
-        this.username = req.username
-        this.role = req.role
+    fun updateInfo(req: memberSaveReq) {
+        this.memberid = req.memberid
+        this.memberpw = req.memberpw
+        this.membername = req.membername
+        this.role = req.role!!
 
     }
 }
@@ -50,12 +50,12 @@ class User (
  * 사용자 요청 값을 dto로 변환하여 보여주기 위함.
  * 회원생성, 회원정보변경시 사용할 dto
  * */
-fun User.toUserSaveRes() : UserSaveRes {
-    return UserSaveRes(
+fun Member.tomemberSaveRes() : memberSaveRes {
+    return memberSaveRes(
         id = this.id,
-        userid = this.userid,
-        userpw = this.userpw,
-        username = this.username,
+        memberid = this.memberid,
+        memberpw = this.memberpw,
+        membername = this.membername,
         role = this.role
 
     )
@@ -67,12 +67,12 @@ fun User.toUserSaveRes() : UserSaveRes {
  * 사용자 요청 값을 dto로 변환하여 보여주기 위함.
  * 사용자 모든 정보를 담아서 보여주기 위한 dto
  * */
-fun User.toUserRes() : UserRes {
-    return UserRes(
+fun Member.tomemberRes() : memberRes {
+    return memberRes(
         id = this.id,
-        userid = this.userid,
-        userpw = this.userpw,
-        username = this.username,
+        memberid = this.memberid,
+        memberpw = this.memberpw,
+        membername = this.membername,
         role = this.role,
     )
 }
