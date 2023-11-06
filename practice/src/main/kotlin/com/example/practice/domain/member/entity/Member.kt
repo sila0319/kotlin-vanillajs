@@ -37,7 +37,7 @@ class Member (
     var role : Role = role
         protected set
 
-    fun updateInfo(req: memberSaveReq) {
+    fun updateInfo(req: MemberSaveReq) {
         this.memberid = req.memberid
         this.memberpw = req.memberpw
         this.membername = req.membername
@@ -50,8 +50,8 @@ class Member (
  * 사용자 요청 값을 dto로 변환하여 보여주기 위함.
  * 회원생성, 회원정보변경시 사용할 dto
  * */
-fun Member.tomemberSaveRes() : memberSaveRes {
-    return memberSaveRes(
+fun Member.tomemberSaveRes() : MemberSaveRes {
+    return MemberSaveRes(
         id = this.id,
         memberid = this.memberid,
         memberpw = this.memberpw,
@@ -67,8 +67,8 @@ fun Member.tomemberSaveRes() : memberSaveRes {
  * 사용자 요청 값을 dto로 변환하여 보여주기 위함.
  * 사용자 모든 정보를 담아서 보여주기 위한 dto
  * */
-fun Member.tomemberRes() : memberRes {
-    return memberRes(
+fun Member.tomemberRes() : MemberRes {
+    return MemberRes(
         id = this.id,
         memberid = this.memberid,
         memberpw = this.memberpw,

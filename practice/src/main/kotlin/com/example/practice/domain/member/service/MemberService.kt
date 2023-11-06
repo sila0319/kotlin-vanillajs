@@ -15,25 +15,24 @@ import org.springframework.transaction.annotation.Transactional
 class MemberService(
 
     private val memberRepository: MemberRepository,
-    private val singServie : SignService,
     private val passwordEncoder: BCryptPasswordEncoder
 
 ){
 
     @Transactional(readOnly = true)
-    fun getAllmember(pageable : Pageable) : Page<memberRes> =
+    fun getAllmember(pageable : Pageable) : Page<MemberRes> =
         memberRepository.findAll(pageable).map{
         it?.tomemberRes()
     }
 
 
     @Transactional(readOnly = true)
-    fun getmember(id : Long?) : memberRes? {
+    fun getmember(id : Long?) : MemberRes? {
         var member : Member? = memberRepository.findById(id) ?: throw UserNotFoundException(id)
         return member?.tomemberRes()
     }
     @Transactional
-    fun createmember(memberSaveReq: memberSaveReq): memberSaveRes {
+    fun createmember(memberSaveReq: MemberSaveReq): MemberSaveRes {
         if (memberRepository.findByMemberid(memberSaveReq.memberid) === null) {
             if (memberSaveReq.memberpw != memberSaveReq.memberpwchk)
                 throw IllegalArgumentException("비밀번호를 확인 해주세요.")
@@ -49,7 +48,7 @@ class MemberService(
     }
 
     @Transactional
-    fun updatemember(memberSaveReq : memberSaveReq) : memberSaveRes{
+    fun updatemember(memberSaveReq : MemberSaveReq) : MemberSaveRes{
         var member: Member? = memberRepository.findById(memberSaveReq.id) ?: throw UserNotFoundException(memberSaveReq.id)
         member!!.updateInfo(memberSaveReq)
         memberRepository.save(member)
@@ -57,7 +56,7 @@ class MemberService(
     }
 
     @Transactional
-    fun deletemember(id : Long,memberDeleteReq: memberDeleteReq) : String{
+    fun deletemember(id : Long,memberDeleteReq: MemberDeleteReq) : String{
         if(id.equals(memberDeleteReq.id)){
             var member : Member? = memberRepository.findById(memberDeleteReq.id) ?: throw UserNotFoundException(memberDeleteReq.id)
             if(memberDeleteReq.checkmember(member!!)) {

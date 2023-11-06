@@ -32,7 +32,7 @@ dependencies {
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0")
     implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
     implementation("nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect")
-
+    implementation("org.thymeleaf.extras:thymeleaf-extras-springsecurity5:3.0.4.RELEASE")
 
 //    implementation("io.jsonwebtoken:jjwt-api:0.11.2")
 //    runtimeOnly("io.jsonwebtoken:jjwt-impl:0.11.2")
