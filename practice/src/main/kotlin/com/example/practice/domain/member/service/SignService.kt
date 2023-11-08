@@ -18,17 +18,17 @@ import org.springframework.stereotype.Service;
 @Service
 class SignService(
     private val memberRepository: MemberRepository,
-    private var authenticationManager: AuthenticationManager
+    //private var authenticationManager: AuthenticationManager
 ) : UserDetailsService {
-    fun authenticateUser(username: String, password: String) {
-        val userDetails: UserDetails = loadUserByUsername(username)
-        val authenticationToken = UsernamePasswordAuthenticationToken(userDetails, password, userDetails.authorities)
-        val authentication: Authentication = authenticationManager.authenticate(authenticationToken)
-
-        SecurityContextHolder.getContext().authentication = authentication
-
-        // 이제 사용자가 인증되었습니다.
-    }
+//    fun authenticateUser(username: String, password: String) {
+//        val userDetails: UserDetails = loadUserByUsername(username)
+//        val authenticationToken = UsernamePasswordAuthenticationToken(userDetails, password, userDetails.authorities)
+//        val authentication: Authentication = authenticationManager.authenticate(authenticationToken)
+//
+//        SecurityContextHolder.getContext().authentication = authentication
+//
+//        // 이제 사용자가 인증되었습니다.
+//    }
     override fun loadUserByUsername(memberId: String?): UserDetails {
         val member : Member? = memberRepository.findByMemberid(memberId)
         println(member)
@@ -50,10 +50,10 @@ class SignService(
         println(user.password)
         return user
     }
-    private fun getAuthorities(role: String): List<GrantedAuthority> {
-        val authorities: MutableList<GrantedAuthority> = ArrayList()
-        authorities.add(SimpleGrantedAuthority("ROLE_$role"))
-        return authorities
-    }
+//    private fun getAuthorities(role: String): List<GrantedAuthority> {
+//        val authorities: MutableList<GrantedAuthority> = ArrayList()
+//        authorities.add(SimpleGrantedAuthority("ROLE_$role"))
+//        return authorities
+//    }
 }
 

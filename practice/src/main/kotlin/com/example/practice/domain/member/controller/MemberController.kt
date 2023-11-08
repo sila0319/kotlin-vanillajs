@@ -32,11 +32,11 @@ class MemberController (
 //        return ""
 //    }
 
-    @PostMapping("/login")
-    fun postLogin(memberLoginReq: MemberLoginReq ) : String{
-        signService.authenticateUser(memberLoginReq.memberid, memberLoginReq.memberpw)
-        return ""
-    }
+//    @PostMapping("/login")
+//    fun postLogin(memberLoginReq: MemberLoginReq ) : String{
+//        signService.authenticateUser(memberLoginReq.memberid, memberLoginReq.memberpw)
+//        return ""
+//    }
 
 
     @GetMapping("/login")
